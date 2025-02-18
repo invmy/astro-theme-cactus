@@ -1,5 +1,5 @@
 backend:
-  name: invmy
+  name: github
   repo: invmy/astro-theme-cactus
   branch: main # Branch to update (optional; defaults to master)
   site_domain: https://754321.xyz
