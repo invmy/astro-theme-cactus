@@ -6,8 +6,8 @@ backend:
   base_url: https://754321.xyz
   auth_endpoint: /api/auth
 
-media_folder: static/img
-public_folder: /img
+media_folder: src/assets/images
+public_folder: /assets/images
 
 collections:
   # Post collection
@@ -19,10 +19,11 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: '标题', name: 'title', widget: 'string' }
+      - { label: '发布日期', name: 'publishDate', widget: 'datetime', date_format: "YYYY-MM-DD" }
+      - { label: '描述', name: 'description', widget: 'string' }
+      - { label: "标签", name: "tags", widget: "list" }
+      - { label: '正文', name: 'body', widget: 'markdown' }
 
   # Note collection
   - name: 'note'
@@ -33,6 +34,6 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: '标题', name: 'title', widget: 'string' }
+      - { label: '发布日期', name: 'publishDate', widget: 'datetime' }
+      - { label: '正文', name: 'body', preview: true, widget: 'markdown' }
