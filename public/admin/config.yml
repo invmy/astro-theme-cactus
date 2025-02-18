@@ -6,7 +6,11 @@ backend:
   base_url: https://754321.xyz
   auth_endpoint: /api/auth
 
+media_folder: static/img
+public_folder: /img
+
 collections:
+  # Post collection
   - name: 'post'
     label: 'POST'
     folder: 'src/content/post'
@@ -20,8 +24,9 @@ collections:
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
+  # Note collection
   - name: 'note'
-    label: 'note'
+    label: 'NOTE'
     folder: 'src/content/note'
     create: true
     slug: '{{slug}}'
