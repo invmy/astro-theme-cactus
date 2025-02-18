@@ -29,22 +29,22 @@ export const siteConfig: SiteConfig = {
 export const menuLinks: { path: string; title: string }[] = [
 	{
 		path: "/",
-		title: "Home",
+		title: "首页",
 	},
 	{
 		path: "/about/",
-		title: "About",
+		title: "关于",
 	},
 	{
 		path: "/posts/",
-		title: "Blog",
+		title: "帖子",
 	},
 	{
 		path: "/notes/",
-		title: "Notes",
+		title: "随记",
 	},
 	{
-		path: "/posts/economic-calendar/",
+		path: "/notes/economic-calendar/",
 		title: "Economic-Calendar",
 	},
 ];
