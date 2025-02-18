@@ -1,0 +1,33 @@
+backend:
+  name: invmy
+  repo: invmy/astro-theme-cactus
+  branch: main # Branch to update (optional; defaults to master)
+  site_domain: https://754321.xyz
+  base_url: https://754321.xyz
+  auth_endpoint: /api/auth
+
+collections:
+  - name: 'post'
+    label: 'POST'
+    folder: 'src/content/post'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'note'
+    label: 'note'
+    folder: 'src/content/note'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
