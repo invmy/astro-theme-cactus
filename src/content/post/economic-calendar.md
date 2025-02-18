@@ -1,6 +1,7 @@
 ---
 title: economic-calendar
 publishDate: "2024-10-14T11:23:00Z"
+description: "tool for economic-calendar"
 ---
 
 <iframe allowtransparency="true" height="720" 

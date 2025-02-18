@@ -44,7 +44,7 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Notes",
 	},
 	{
-		path: "/economic-calendar/",
+		path: "/posts/economic-calendar/",
 		title: "Economic-Calendar",
 	},
 ];

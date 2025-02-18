@@ -19,9 +19,9 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: '标题', name: 'title', widget: 'string' }
-      - { label: '发布日期', name: 'publishDate', widget: 'datetime', date_format: "YYYY-MM-DD" }
-      - { label: '描述', name: 'description', widget: 'string' }
+      - { label: '标题', name: 'title', widget: 'string' ,required: true}
+      - { label: '发布日期', name: 'publishDate', widget: 'datetime', date_format: "YYYY-MM-DD", required: true}
+      - { label: '描述', name: 'description', widget: 'string' ,required: true}
       - { label: "标签", name: "tags", widget: "list" }
       - { label: '正文', name: 'body', widget: 'markdown' }
 
@@ -34,6 +34,6 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: '标题', name: 'title', widget: 'string' }
-      - { label: '发布日期', name: 'publishDate', widget: 'datetime' }
+      - { label: '标题', name: 'title', widget: 'string' ,required: true}
+      - { label: '发布日期', name: 'publishDate', widget: 'datetime' ,required: true}
       - { label: '正文', name: 'body', preview: true, widget: 'markdown' }
