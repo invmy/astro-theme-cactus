@@ -11,6 +11,7 @@ https://github.com/i40west/netlify-cms-cloudflare-pages
 ## 准备
 
 Cloudflare 账号
+
 Github 账号
 
 ## 创建Github OAuth
@@ -21,12 +22,15 @@ https://github.com/settings/developers
 
 列如https://0.123456.xyz
 
-保存页面的两个数据备用，Client ID和Client secrets
+保存页面的两个数据备用
+
+Client ID和Client secrets
 
 ## CMS程序
 下载项目文件
 
-admin放到公开目录，比如astro的public
+admin放到公开目录，astro在public
+
 functions 放到根目录 /
 
 ## 编辑config.yml
