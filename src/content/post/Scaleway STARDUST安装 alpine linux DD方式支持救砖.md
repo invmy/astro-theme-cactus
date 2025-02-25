@@ -4,7 +4,7 @@ publishDate: "2025-2-13"
 description: "Scaleway STARDUST安装 alpine linux"
 tags: ["Alpine"]
 ---
-# 参考文章
+## 参考文章
 
 * https://yushum.com/archives/1118
 *https://blog.akebinukui.eu.org/2023/09/19/%e6%95%99%e7%a8%8b%e6%96%b0%e7%89%88scaleway%e6%98%9f%e5%b0%98%f0%9f%a4%a11c1g1g%e9%b8%a1alpine-linux%e7%8e%a9%e6%b3%95/
@@ -12,7 +12,7 @@ tags: ["Alpine"]
 
 
 
-# 添加SSH-key
+## 添加SSH-key
 
 按照官方文档创建或者添加一个公钥
 
@@ -20,7 +20,7 @@ ssh-key 添加：https://console.scaleway.com/project/ssh-keys
 
 文档：https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/
 
-# 创建实例
+## 创建实例
 
 控制台或者CLI创建一个实例，只能创建10g起步，待会才能修改 
 
@@ -31,34 +31,34 @@ ssh-key 添加：https://console.scaleway.com/project/ssh-keys
  
 波兰：scw instance server create zone=pl-waw-2 root-volume=local:10GB name=pl type=STARDUST1-S ipv6=true ip=none
  
-#返回服务器信息表示命令执行成功。如果返回各种乱七八糟参数，表示命令输入有误，需重新执行。
+##返回服务器信息表示命令执行成功。如果返回各种乱七八糟参数，表示命令输入有误，需重新执行。
 ```
 
-# 安装实例
+## 安装实例
 
-## 常用命令
+#### 常用命令
 
 使用命令行操作减少扣费，通过面板操作开关机都会收取0.01费用
 
 ```
-#重启
+##重启
 scw instance server reboot <实例的InstanceID>
 
-#启动
+##启动
 scw instance server start <实例的InstanceID>
 
-#关机
+##关机
 scw instance server stop <实例的InstanceID>
 ```
 
-## 更改 1GB 硬盘
+#### 更改 1GB 硬盘
 
 * 左侧 Instances，进入实例管理面板，输入命令关机
 * 分离 10GB 硬盘：实例管理面板，Attached volumes 选项卡，在硬盘右侧三个点选 Detach 解绑
 * 创建 1GB 硬盘：点击 Create Volume 创建 Local Storage，大小 1GB
 * 删除 10GB 硬盘：左侧 Instances，Volumes 选项卡，旧 10GB 硬盘右侧三个点选 Delete 删除
 
-## 救援恢复模式启动
+#### 救援恢复模式启动
 
 * 在实例管理面板的 Advanced settings 选项卡中，选中 Use rescue image，保存
 * 面板关机：左侧 Instances，进入实例管理面板，右上角开关，开机
@@ -69,26 +69,26 @@ parted /dev/vda mklabel gpt
 
 wget -qO- https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-virt-3.20.1-x86_64.iso | dd of=/dev/vda
 
-# 使用最新镜像到官网获取
-# https://alpinelinux.org/downloads/
-# Virtual - x86_64
+## 使用最新镜像到官网获取
+## https://alpinelinux.org/downloads/
+## Virtual - x86_64
 ```
 
-## 改硬盘启动
+#### 改硬盘启动
 
 * 面板关机：左侧 Instances，进入实例管理面板，右上角开关，关机
 * 更改硬盘启动：实例管理面板，Advanced settings 选项卡
 * 选中 Use local boot，保存，Boot volume 选择 1GB 硬盘，保存，开机
 
 
-# 安装 Alpine Linux
+## 安装 Alpine Linux
 
-## 进入Console
+#### 进入Console
 
 实例 overview 选项卡 的右上方 进入 console，再进行开机
 
 
-## 前置配置
+#### 前置配置
 
 ```
 mkdir /media/setup
@@ -101,16 +101,16 @@ mv /media/setup/* /media/vda/
 mv /lib/setup/* /.modloop/
 
 export BOOT_SIZE=33
-# 配置efi分区为33mb
+## 配置efi分区为33mb
 ```
 
-## set 安装
+#### set 安装
 
 ```
 setup-alpine
 ```
 
-## 交互式安装过程
+#### 交互式安装过程
 
 不懂可以问一下chatgpt
 这是我的过程，列出大概的问题，版本更新可能会出现不同的问题
@@ -140,7 +140,7 @@ iface eth0 inet6 static
 * vda
 * sys
 
-## 报错之后
+#### 报错之后
 
 `vi /etc/resolv.conf`
 
@@ -148,17 +148,17 @@ iface eth0 inet6 static
 
 `nameserver 2001:4860:4860::6464`
 
-## 输入命令启用官方源
+#### 输入命令启用官方源
 
 ```
 echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories
 echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
-echo "#http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-echo "#http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-echo "#http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+echo "##http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+echo "##http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+echo "##http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 ```
 
-## 安装启动项
+#### 安装启动项
 
 ```
 apk update
@@ -166,7 +166,7 @@ apk add dosfstools
 apk add grub-efi
 ```
 
-## 关闭 swap
+#### 关闭 swap
 
 ```
 setup-disk -s 0
@@ -178,27 +178,27 @@ setup-disk -s 0
 
 `输入reboot重启`
 
-# 安装完成之后...
+## 安装完成之后...
 
 使用ssh软件并添加密钥登录到你的服务器
 
-## 常用安装
+#### 常用安装
 
 ```
 apk add sudo curl wget bash tar unzip jq
 ```
 
-## ssh安全配置
+#### ssh安全配置
 
 如果之前禁用密码登录并配置了密钥修改成1024后面的端口即可
 
 ```
 vi /etc/ssh/sshd_config
  
-//找到 #Port 22 行，去掉 #，改成想要的端口号，保存
+//找到 ##Port 22 行，去掉 ##，改成想要的端口号，保存
 ```
 
-## 开启BBR
+#### 开启BBR
 
 ```
 echo "tcp_bbr" >> /etc/modules-load.d/bbr.conf

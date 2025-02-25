@@ -5,7 +5,7 @@ description: "Alpine Linux 手动部署xray程序 支持更新core和dat"
 tags: ["Alpine"]
 ---
 
-# 介绍
+## 介绍
 
 xray项目：https://github.com/XTLS/Xray-core
 
@@ -23,12 +23,12 @@ x-ui https://github.com/MHSanaei/3x-ui
 本文使用路径为/root/xray
 
 ```
-# 创建文件夹xray
+## 创建文件夹xray
 mkdir /root/xray
 
 ```
 
-# Warp 实现ipv4出口
+## Warp 实现ipv4出口
 
 
 https://gitlab.com/fscarmen/warp
@@ -44,7 +44,7 @@ wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
 选择为 IPv6 only 添加 WARP IPv4 网络接口 (bash menu.sh 4)
 ```
 
-# 添加一个xray服务
+## 添加一个xray服务
 
 touch /etc/init.d/xray
 
@@ -55,7 +55,7 @@ vi /etc/init.d/xray
 <summary>xray 服务</summary>
 
 ```bash
-#!/sbin/openrc-run
+##!/sbin/openrc-run
 
 name="Xray"
 description="Xray with XTLS support"
@@ -130,38 +130,38 @@ stop() {
 ```
 </details>
 
-# 启动xray
+## 启动xray
 
 将config.json放入/root/xray的文件夹内使用
 
 ```
-#设置服务权限
+##设置服务权限
 chmod +x /etc/init.d/xray
 
 
-# 获取最新的xray内容
+## 获取最新的xray内容
 rc-service xray update_core
 
-# 更新最新的geo dat
+## 更新最新的geo dat
 rc-service xray update_geo
 
-# 设置内核权限
+## 设置内核权限
 chmod +x /root/xray/xray
 
-#启动
+##启动
 rc-service xray start
 
-#可以查看运行状态
+##可以查看运行状态
 rc-status
 ```
-## 其他命令
+#### 其他命令
 
 ```
 Enable
-# rc-update add xray
+## rc-update add xray
 
 Disable
-# rc-update del xray
+## rc-update del xray
 
 安装包
 apk add ...
@@ -176,7 +176,7 @@ rc-service --list
 rc-status
 ```
 
-# 自动更新
+## 自动更新
 
 ```
 crontab -e 
@@ -188,7 +188,7 @@ crontab -e
 
 ```
 
-# 参考
+## 参考
 
 * https://tabsp.com/posts/vless-reality-vision/
 * https://linux.do/t/topic/151670

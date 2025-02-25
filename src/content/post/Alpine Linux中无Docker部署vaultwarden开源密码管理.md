@@ -5,7 +5,7 @@ description: "Alpine Linux中无Docker部署vaultwarden开源密码管理"
 tags: ["Alpine"]
 ---
 
-# 开始
+## 开始
 
 在不足1GB的硬盘再部署docker坏境连镜像都拉不下来更别说部署了
 
@@ -16,12 +16,12 @@ tags: ["Alpine"]
 <img src="https://cdn.jsdelivr.net/gh/invmy/invmy.github.io/img/blog/1739007188-caddy-Vaultwarden-htop.png">
 
 
-# 需要的东西
+## 需要的东西
 - Alpine Linux
 - 域名 (Vaultwarden仅支持Https访问，需要证书)
 - cloudflare? 应该不是必须
 - 
-# 域名 证书
+## 域名 证书
 
 使用A或者AAAA，将域名指向你的服务器IP
 cloudflare的SSL设置成`完全`
@@ -29,7 +29,7 @@ cloudflare的SSL设置成`完全`
 自动生成证书可能会失效，SSL/TLS -> 源服务器 
 前往cloudflare生成15年有效期的证书，分别存为crt.pem，key.pem备用，
 
-# 部署 Vaultwarden
+## 部署 Vaultwarden
 
  `apk add vaultwarden` 
 
@@ -39,7 +39,7 @@ cloudflare的SSL设置成`完全`
 
 添加程序项
 
-#  Vaultwarden - web
+##  Vaultwarden - web
 
 这个部署是不带web文件的，
 
@@ -56,17 +56,17 @@ https://github.com/czyt/vaultwarden-binary/releases
 ```
 mkdir va
 cd va
-#链接会过期，自行替换成最新版链接
+##链接会过期，自行替换成最新版链接
 wget https://github.com/czyt/vaultwarden-binary/releases/download/1.33.1-extracted/vaultwarden-linux-amd64-extracted.zip
 
-#解压
+##解压
 unzip *.zip
 
-#复制web
+##复制web
 cp -r web-vault/* /usr/share/webapps/vaultwarden-web/
 ```
 
-# 配置 Vaultwarden
+## 配置 Vaultwarden
 
 官方文档 https://github.com/dani-garcia/vaultwarden/wiki/Configuration-overview
 更多变量请查看文档。现在只设置主要变量
@@ -75,35 +75,35 @@ cp -r web-vault/* /usr/share/webapps/vaultwarden-web/
 
 ```
 vi /etc/conf.d/vaultwarden 
-#编辑文件
+##编辑文件
 
 输入i进入编辑模式
 
-# safe
+## safe
 export SHOW_PASSWORD_HINT=false
 
-# export DOMAIN=https://aa.bb.cc:443
+## export DOMAIN=https://aa.bb.cc:443
 
-# 注册类
+## 注册类
 export SIGNUPS_ALLOWED=false
 export INVITATIONS_ALLOWED=false
 
-# 禁止admin token
+## 禁止admin token
 export DISABLE_ADMIN_TOKEN=false
 
-# push 推送 https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification
+## push 推送 https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification
 
-# export PUSH_ENABLED=true
+## export PUSH_ENABLED=true
 
-# export PUSH_INSTALLATION_ID=
+## export PUSH_INSTALLATION_ID=
 
-# export PUSH_INSTALLATION_KEY=
+## export PUSH_INSTALLATION_KEY=
 
-# export PUSH_RELAY_URI=https://push.bitwarden.eu
+## export PUSH_RELAY_URI=https://push.bitwarden.eu
 
-# export PUSH_IDENTITY_URI=https://identity.bitwarden.eu
+## export PUSH_IDENTITY_URI=https://identity.bitwarden.eu
 
-# limit限制
+## limit限制
 
 export ROCKET_LIMITS={json=10485760
 
@@ -120,20 +120,20 @@ export ROCKET_LIMITS={json=10485760
 如果不生效，请检测/var/lib/vaultwarden/目录下是否有config.json或.env 请删除
 
 
-# caddy反代并自动https证书
+## caddy反代并自动https证书
 
 ```
 apk add caddy
-#安装caddy
+##安装caddy
 
 apk add libcap
-# 需要端口管理
+## 需要端口管理
 
 rc-update add caddy
-#添加至服务项
+##添加至服务项
 
 sudo setcap cap_net_bind_service=+ep $(which caddy)
-# 让caddy支持端口管理
+## 让caddy支持端口管理
 ```
 
 安装完成后 编辑配置文件`vi /etc/caddy/Caddyfile`
@@ -174,10 +174,10 @@ cloudflare只支持部分端口，参见 [cloudflare](https://developers.cloudfl
 无问题应该可以使用域名+端口进行访问了。
 
 
-# 备份 
+## 备份 
 
 `/var/lib/vaultwarden/` 备份整个文件夹 
 
 `/etc/conf.d/vaultwarden` admin配置文件，重新部署需要。
 
-# enjoy
+## enjoy
