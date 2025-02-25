@@ -126,6 +126,7 @@ Use Path Style
 ## 打开跨域 Cloudflare R2 设置 CORS 策略
 
 域名修改成自己的，修复无法访问桶资源
+```
 [
   {
     "AllowedOrigins": ["https://memos.me"],
@@ -135,3 +136,4 @@ Use Path Style
     "MaxAgeSeconds": 3000
   }
 ]
+```
