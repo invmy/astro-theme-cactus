@@ -2,7 +2,7 @@
 title: "Alpine Linux中无Docker部署vaultwarden开源密码管理"
 publishDate: "2025-2-13"
 description: "Alpine Linux中无Docker部署vaultwarden开源密码管理"
-tags: ["AlpineLinux","折腾"]
+tags: ["Alpine"]
 ---
 
 # 开始
