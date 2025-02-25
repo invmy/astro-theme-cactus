@@ -2,8 +2,7 @@
 title: Alpine使用二进制部署Memos
 publishDate: 2025-02-25T06:44:52.380Z
 description: 使用最小的空间安装memos并链接cloudflare R2桶
-tags:
-  - 折腾
+tags: ["Alpine"]
 ---
 ## 开始
 

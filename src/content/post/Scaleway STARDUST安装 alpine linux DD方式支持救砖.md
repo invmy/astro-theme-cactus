@@ -2,7 +2,7 @@
 title: "Scaleway STARDUST安装 alpine linux"
 publishDate: "2025-2-13"
 description: "Scaleway STARDUST安装 alpine linux"
-tags: ["AlpineLinux","折腾"]
+tags: ["Alpine"]
 ---
 # 参考文章
 
