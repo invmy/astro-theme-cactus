@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: invmy/astro-paper
+  repo: invmy/astro-theme-cactus
   branch: i # Branch to update (optional; defaults to master)
-  site_domain: https://blog.754321.xyz
-  base_url: https://blog.754321.xyz
+  site_domain: https://754321.xyz
+  base_url: https://754321.xyz
   auth_endpoint: /api/auth
 
 media_folder: src/assets/images
