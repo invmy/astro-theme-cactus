@@ -6,7 +6,7 @@ import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, passthroughImageService } from "astro/config";
 import { expressiveCodeOptions } from "./src/site.config";
 import { siteConfig } from "./src/site.config";
 
@@ -25,6 +25,7 @@ import rehypeUnwrapImages from "rehype-unwrap-images";
 export default defineConfig({
 	site: siteConfig.url,
 	image: {
+		service: passthroughImageService(),
 		domains: ["webmention.io"],
 	},
 	integrations: [
@@ -39,20 +40,20 @@ export default defineConfig({
 			short_name: "Astro_Cactus", // optional
 			description: siteConfig.description,
 			lang: siteConfig.lang,
-			icon: "public/icon.svg", // the source for generating favicon & icons
+			icon: "public/icons/favicon.svg", // the source for generating favicon & icons
 			icons: [
 				{
-					src: "icons/apple-touch-icon.png", // used in src/components/BaseHead.astro L:26
+					src: "public/icons/apple-touch-icon.png", // used in src/components/BaseHead.astro L:26
 					sizes: "180x180",
 					type: "image/png",
 				},
 				{
-					src: "icons/icon-192.png",
+					src: "public/icons/web-app-manifest-192x192.png",
 					sizes: "192x192",
 					type: "image/png",
 				},
 				{
-					src: "icons/icon-512.png",
+					src: "public/icons/web-app-manifest-512x512.png",
 					sizes: "512x512",
 					type: "image/png",
 				},

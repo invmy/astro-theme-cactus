@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: invmy/astro-paper
+  branch: i # Branch to update (optional; defaults to master)
+  site_domain: https://blog.754321.xyz
+  base_url: https://blog.754321.xyz
+  auth_endpoint: /api/auth
+
+media_folder: src/assets/images
+public_folder: "@/assets/images"
+
+collections:
+  - name: 'post'
+    label: 'post'
+    folder: 'src/content/post'
+    create: true
+    editor:
+      preview: true
+      frame: true
+    sortable_fields: ["publishDate","updatedDate"]
+    fields:
+
+      - { label: '标题', name: 'title', widget: 'string' ,required: true}
+      - { label: '描述', name: 'description', widget: 'string',required: true}
+      - { label: '日期', name: 'publishDate', widget: 'datetime',required: true}
+      - { label: '更新日期', name: 'updatedDate', widget: 'datetime',required: false}
+      - { label: "标签", name: "tags", widget: "list",required: false}
+      - { label: '正文', name: 'body', widget: 'markdown',required: true}
+
+  - name: 'note'
+    label: 'note'
+    folder: 'src/content/note'
+    create: true
+    editor:
+      preview: true
+      frame: true
+    sortable_fields: ["publishDate"]
+    fields:
+      - { label: '标题', name: 'title', widget: 'string' ,required: true}
+      - { label: '日期', name: 'publishDate', widget: 'datetime',required: true}
