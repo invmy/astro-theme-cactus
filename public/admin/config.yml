@@ -19,7 +19,6 @@ collections:
       frame: true
     sortable_fields: ["publishDate","updatedDate"]
     fields:
-
       - { label: '标题', name: 'title', widget: 'string' ,required: true}
       - { label: '描述', name: 'description', widget: 'string',required: true}
       - { label: '日期', name: 'publishDate', widget: 'datetime',required: true}
@@ -38,3 +37,4 @@ collections:
     fields:
       - { label: '标题', name: 'title', widget: 'string' ,required: true}
       - { label: '日期', name: 'publishDate', widget: 'datetime',required: true}
+      - { label: '正文', name: 'body', widget: 'markdown',required: true}
