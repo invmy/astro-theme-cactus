@@ -77,46 +77,52 @@ rclone -P -v copy file.txt r2:/dir
 
 因为不允许空文件夹，手动删除0kb文件即可
 
-## 简单的备份脚本
-
+## 备份脚本
+使用tar.gz备份并保留权限
 ```bash
 #!/bin/bash
 
 server="r2"
 save_dir="/bak"
 
-# 当前日期（格式: yyyy-mm-dd_HH:MM）
+# 获取当前日期，格式: yyyy-mm-dd_HH:MM
 CURRENT_DATE=$(date +"%Y-%m-%d_%H:%M")
 
-sh /root/fcm.sh "Backup Starting" "$CURRENT_DATE"
+sh /root/sh/fcm.sh "Backup Starting" "$CURRENT_DATE"
 
-# 需要备份的目录或文件
-BACKUP_DIR="/etc/caddy/Caddyfile /etc/conf.d/nginx.conf"
-BACKUP_ZIP_NAME="backup_$CURRENT_DATE.zip"
+# 需要备份的目录和文件
+BACKUP_DIR="/etc/caddy/Caddyfile /etc/conf.d/vaultwarden/"
+BACKUP_TAR_NAME="backup_$CURRENT_DATE.tar.gz"
 
+# 创建 tar.gz 备份文件
+tar -czpf "$BACKUP_TAR_NAME" $BACKUP_DIR
 
-# 创建 ZIP 备份文件
-zip -r "$BACKUP_ZIP_NAME" $BACKUP_DIR
-
-# Get ZIP file size in bytes and convert to KB
-ZIP_FILE_SIZE=$(stat -c %s "$BACKUP_ZIP_NAME")
-ZIP_FILE_SIZE_KB=$(echo "scale=2; $ZIP_FILE_SIZE / 1024" | bc)
+# 获取 tar.gz 文件大小（KB）
+TAR_FILE_SIZE=$(stat -c %s "$BACKUP_TAR_NAME")
+TAR_FILE_SIZE_KB=$(echo "scale=2; $TAR_FILE_SIZE / 1024" | bc)
 
 # 上传到 rclone 远程存储
-rclone copy ./$BACKUP_ZIP_NAME $server:$save_dir -vv --log-file=/var/log/rclone.log
-
+rclone copy ./$BACKUP_TAR_NAME $server:$save_dir -vv --log-file=/var/log/rclone.log
 
 if [ $? -eq 0 ]; then 
-    sh fcm.sh "Backup Done" "$ZIP_FILE_SIZE_KB KB"
+    sh /sh/fcm.sh "Backup Done" "$CURRENT_DATE 大小 $TAR_FILE_SIZE_KB KB"
 else
-    last_log=$(tail -n 20 /var/log/rclone.log)  # 获取最后20行日志
-    sh fcm.sh "Backup Error" "$last_log"
+    last_log=$(tail -n 20 /var/log/rclone.log) 
+    sh /sh/fcm.sh "Backup Error" "$last_log"
 fi
 
+# 删除本地备份文件
+rm "$BACKUP_TAR_NAME"
 
-# 清理本地备份文件
-rm "$BACKUP_ZIP_NAME"
+```
 
+## 还原备份
+使用tar.gz的备份使用的相对路径，
+
+指定解压在 / 根目录下
+
+```
+tar -xzf backup.tar.gz -C /
 ```
 
 ## FCM.sh
@@ -127,7 +133,7 @@ rm "$BACKUP_ZIP_NAME"
 
 android端下载：https://github.com/SimonMarquis/FCM-toolbox/releases
 
-脚本中 `to` 修改为自己设备的token。
+脚本中 `your-token` 修改为自己设备的token。
 
 使用方法 `sh fcm.sh "title" "conent"`
 
