@@ -136,8 +136,8 @@ Do you want to do any manual network configuration? (y/n) [n] y      [输入y进
 ```
 auto eth0
 iface eth0 inet6 static
-        address 2001:bc8:1640:3962:dc00:ff:fe48:1d91/64
-        gateway fe80::dc00:ff:fe48:1d92
+        address 2001:bc8:1640:1640:1640:ff:1640:1640/64
+        gateway fe80::1640:ff:1640:1640
 ```
 
 #### DNS本地域名
