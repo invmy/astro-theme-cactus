@@ -47,8 +47,10 @@ https://nat64.net/public-providers
 
 ## 如何使用
 
-编辑`/etc/resolv.conf` 
+编辑`/etc/resolv.conf` 修改成你想要的服务器，离你服务器越近效果越好
 
-修改成你想要的服务器，离你服务器越近效果越好
+清空内容并快速写入
 
-`nameserver 2a00:1098:2c::1`
+```
+echo "nameserver 2a00:1098:2c::1" | sudo tee /etc/resolv.conf > /dev/null
+```
