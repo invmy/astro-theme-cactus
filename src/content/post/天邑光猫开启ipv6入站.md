@@ -93,6 +93,17 @@ num   pkts bytes target     prot opt in     out     source               destina
 10       5   400 LOG        tcp      ppp1.3 *       ::/0                 ::/0                 tcp flags:0x17/0x02 limit: avg 6/hour 
 
 ```
+### 放行高级规则
+
+在drop之前加入有效
+
+```
+放行指定网段设备的出站流量
+ip6tables -I FORWARD 1 -s 240e:240e::/64 -j ACCEPT
+
+放行设备的入站流量（防止返回数据被 DROP）
+ip6tables -I FORWARD 2 -d 240e:3b1::/64 -j ACCEPT
+```
 
 ### 恢复DROP规则
 
